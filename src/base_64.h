@@ -5,6 +5,6 @@
 size_t strsize(const char* str);
 size_t base_64_size(size_t n);
 void base_64_encode(const char* in, char* out);
-char* base_64_algo(const char* input_buf, char* output_buf, char* out);
+void base_64_algo(const char* input_buf, char* output_buf, char** out);
 
 #endif

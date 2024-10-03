@@ -22,7 +22,7 @@ size_t base_64_size(size_t n) {
 	return 4*((n)/3) + 1; //1 for null character
 }
 
-char* base_64_algo(const char* input_buf, char* output_buf, char* out) {
+void base_64_algo(const char* input_buf, char* output_buf, char** out) {
 	const char* base_64_lookup = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 	int i;
 	output_buf[0] = (input_buf[0] & 0xfc) >> 2;
@@ -30,9 +30,9 @@ char* base_64_algo(const char* input_buf, char* output_buf, char* out) {
 	output_buf[2] = (((input_buf[1] & 0x0f) << 4 ) | ((input_buf[2] & 0xc0) >>4)) >> 2;
 	output_buf[3] = (input_buf[2] & 0x3f);
 	for(i =0 ; i < 4; i++) {
-		*(out++) = base_64_lookup[(size_t)output_buf[i]];
+		*(*(out)) = base_64_lookup[(size_t)output_buf[i]];
+		(*out) = (*out) + 1;
 	}
-	return out;
 
 }
 
@@ -46,17 +46,17 @@ void base_64_encode(const char* in, char* out) {
 	while(counter-- > 0) {
 		input_buffer[i++] = in[input_size - counter-1];
 		if(i == 3) {
-			ptr = base_64_algo(input_buffer, output_buffer, ptr);
+			base_64_algo(input_buffer, output_buffer, &ptr);
 			i = 0;
 		}
 	}
 	if(i) {
 		int j = i;
 		while(i<3) input_buffer[i++] = 0;
-		ptr = base_64_algo(input_buffer, output_buffer, ptr);
-		char* reg_ptr = ptr;
+		base_64_algo(input_buffer, output_buffer, &ptr);
+		char* rev_ptr = ptr;
 		while(j++<3) {
-			*(--reg_ptr) = '=';
+			*(--rev_ptr) = '=';
 		}
 
 	}
