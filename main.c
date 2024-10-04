@@ -18,7 +18,7 @@ int main(int argc, char* argv[]) {
 			break;
 		case 'd' :
 			const char* input_str_decode = argv[2];
-			output_str = (char *) malloc(base_64_size(strsize(input_str_decode)));
+			output_str = (char *) malloc(base_str_size(strsize(input_str_decode)));
 			base_64_decode(input_str_decode, output_str);
 			printf("%s\n", output_str);
 			free(output_str);
