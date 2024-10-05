@@ -172,6 +172,7 @@ void file_type(FILE* file, char* type) {
 		i++;
 	}
 	const unsigned int code = *((const unsigned int *)rev_buff);
+//Le' CHAAT GPT Code
 	switch (code) {
 		case 0x89504E47: // PNG
 		    memcpy(type, "image/png", strsize("image/png") + 1);
