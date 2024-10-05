@@ -77,6 +77,7 @@ char* base_64_encode(const char* in) {
 	char output_buffer[4];
 	size_t i = 0;
 	char* out = (char *) malloc(base_64_size(input_size));
+	if(out == NULL) return NULL;
 	char* ptr = out;
 	while(counter-- > 0) {
 		input_buffer[i++] = in[input_size - counter-1];
@@ -106,6 +107,7 @@ char * base_64_decode(const char* in) {
 	char output_buffer[3];
 	size_t i = 0;
 	char* out = (char *) malloc(base_str_size(input_size));
+	if(out == NULL) return NULL;
 	char* ptr = out;
 	while(counter -- > 0) {
 		input_buffer[i++] = in[input_size-counter-1];
@@ -130,6 +132,7 @@ size_t file_size(FILE* file) {
 char* encode_file_base_64(FILE* file) {
 	size_t size = file_size(file);
 	char* encoded_output = (char*) malloc(base_64_size(size));
+	if(encoded_output == NULL) return NULL;
 	char type[30];
 	file_type(file, type);
 	char* ptr = encoded_output;
@@ -155,6 +158,7 @@ char* encode_file_base_64(FILE* file) {
 	} 
 	*ptr = '\0';
 	char* output = (char*) malloc(base_64_size(size) + strsize(type) + 13);
+	if(output == NULL) return NULL;
 	sprintf(output, "data:%s;base64,%s", type,encoded_output);
 	free(encoded_output);
 	return output;
