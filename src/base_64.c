@@ -134,7 +134,7 @@ char* encode_file_base_64(FILE* file) {
 	file_type(file, type);
 	char* ptr = encoded_output;
 	char o_buf[4];
-	char i_buf[3]; // Buffer to hold each line
+	char i_buf[3];
 	int i = 0;
 	while ((i=fread(i_buf, 1, 3, file)) > 0) {
 		if(i == 3)
