@@ -170,7 +170,6 @@ void file_type(FILE* file, char* type) {
 	char rev_buff[4];
 	int i =0;
 	fread(&buff, sizeof(char)*4, 1, file);
-	fseek(file, p, SEEK_SET);
 	while(i < 4) {
 		rev_buff[3-i] = buff[i];
 		i++;
@@ -223,7 +222,6 @@ void file_type(FILE* file, char* type) {
 		    // Check if the file is plain text
 		    fseek(file, 0, SEEK_SET); // Reset file pointer to the beginning
 		    size_t bytes_read = fread(buff, sizeof(char), 4, file);
-		    fseek(file, p, SEEK_SET); // Restore original position
 		    int is_text = 1; // Assume it is text unless proven otherwise
 		    for (size_t j = 0; j < bytes_read; j++) {
 			if (buff[j] < 0x20 && buff[j] != '\n' && buff[j] != '\r' && buff[j] != '\t') {
