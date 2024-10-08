@@ -21,7 +21,7 @@ const char* find_base_64_beg(const char* str) {
 	while(*ptr != '\0') {
 		if(*ptr++ == ',') return ptr;
 	}
-	return NULL;
+	return str;
 }
 
 size_t base_64_size(size_t n) {

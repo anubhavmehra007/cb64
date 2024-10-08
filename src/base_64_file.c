@@ -39,10 +39,7 @@ char* encode_file_base_64(FILE* file) {
 }
 
 void decode_file_base_64(const char* in, FILE* file) {
-	const char* base_64_beg = find_base_64_beg(in);
-	const char* input;
-	if(base_64_beg == NULL) input = in;
-	else input = base_64_beg;
+	const char* input = find_base_64_beg(in);
 	size_t input_size = strsize(input);
 	size_t counter = input_size;
 	char input_buffer[4];

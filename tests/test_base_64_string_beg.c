@@ -6,6 +6,6 @@
 Test(strsize, test_output) {
 	const char* a = "abcd";
 	const char* b = "a,bcd";
-	cr_expect(find_base_64_beg(a) == NULL);
+	cr_expect(find_base_64_beg(a) == a);
 	cr_expect(*(find_base_64_beg(b)) == 'b');
 }
