@@ -16,7 +16,7 @@ all: cleanbin create_bin $(SRCFILES) $(MAIN) test
 	@echo "Making...";
 	@$(CC) $(CFLAGS) -o $(OUTPUT)/$(EXECUTABLE) $(SRCFILES) $(MAIN)
 
-create_bin: $(OUTPUT)
+create_bin:
 	@echo "Generating bin directory...";
 	@mkdir -p $(OUTPUT)
 
