@@ -1,9 +1,9 @@
 #include "./src/base_64.h"
 #include <stdio.h>
 #include<stdlib.h>
-const char* usage = "<cb64 <option> \"<string/file>\"\n Supported Options:-\ne - encode string\nd - decode string\nfe - encode file";
+const char* usage = "<cb64 <option> \"<string/file>\"\n Supported Options:-\ne - encode string\nd - decode string\nfe - encode file\nfd - decode string to file <file> <string>";
 int main(int argc, char* argv[]) { 
-	if(argc != 3) {
+	if(argc < 3) {
 		printf("%s", usage);
 		return -1;
 	}
@@ -28,6 +28,20 @@ int main(int argc, char* argv[]) {
 					output_str = encode_file_base_64(file);
 					fclose(file);
 					break;
+				case 'd':
+					if(argc != 4) {
+						printf("%s", usage);
+						return -1;
+					}
+					FILE* file_output = fopen(argv[2], "w+");
+					if(file_output == NULL) {
+						printf("Error Opening File\n%s", usage);
+						return -1;
+					}
+					const char* input_str_file = argv[3];
+					decode_file_base_64(input_str_file, file_output);
+					fclose(file_output);
+					return 0;
 				default:
 					printf("%s", usage);
 					return -1;
@@ -42,7 +56,7 @@ int main(int argc, char* argv[]) {
 		printf("Something went wrong\n");
 		return - 1;
 	}
-	printf("%s\n", output_str);
+	printf("%s", output_str);
 	free(output_str);
 	return 0;
 

@@ -4,10 +4,10 @@
 #include<string.h>
 
 Test(filesize, test_output) {
-	const char* test_file_path = "/home/anubhav/test.txt";
+	const char* test_file_path = "./tests/test.txt";
 	FILE* file = fopen(test_file_path, "r");
 	char* output = encode_file_base_64(file);
 	fclose(file);
-	cr_expect(strcmp(output, "data:text/plain;base64,aGVsbG8gaG93IGFyZSB5b3Ugd2hhdCBhcmUgeW91IGRvaW5nCg==") == 0); 
+	cr_expect(strcmp(output, "data:text/plain;base64,aGVsbG8gaG93IGFyZSB5b3U/Cg==") == 0); 
 	free(output);
 }
