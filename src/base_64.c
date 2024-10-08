@@ -13,6 +13,7 @@ void base_64_decode_algo(const char* input_buf, char* output_buf, char** out) {
 	output_buf[0] = ((tin_buf[0] & 0x3f) << 2) | ((tin_buf[1]  & 0x30) >> 4);
 	output_buf[1] = (((tin_buf[1] & 0x0f) << 4) | ((tin_buf[2] & 0x3c) >> 2));
 	output_buf[2] = (((tin_buf[2] & 0x03) << 6 ) | ((tin_buf[3] & 0x3f)));
+	if(out == NULL) return;
 	for(i =0; i < 3; i++) {
 		*(*(out)) = output_buf[i];
 		(*out) = (*out) + 1;

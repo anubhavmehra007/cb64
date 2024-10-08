@@ -14,8 +14,14 @@ size_t strsize(const char* str) {
 	while(*(str++) != '\0') size++;
 	end = str;
 	return size;
+}
 
-
+const char* find_base_64_beg(const char* str) {
+	const char* ptr = str;
+	while(*ptr != '\0') {
+		if(*ptr++ == ',') return ptr;
+	}
+	return NULL;
 }
 
 size_t base_64_size(size_t n) {

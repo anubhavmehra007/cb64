@@ -14,5 +14,6 @@ void base_64_decode_algo(const char* input_buf, char* output_buf, char** out);
 size_t  file_size(FILE* file);
 void file_type(FILE* file, char* type);
 char* encode_file_base_64(FILE* file);
-void decode_file_base_64(FILE* file);
+void decode_file_base_64(const char* in, FILE* file);
+const char* find_base_64_beg(const char* str);
 #endif
